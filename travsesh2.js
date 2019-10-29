@@ -81,4 +81,68 @@ const chunkArray2 = (arr, len) => {
     return chunkedArr;
 };
 
-console.log(chunkArray2([1, 2, 3, 4, 5, 6, 7], 2));
+// my solution
+const flattenArr = arrays => {
+    let newArr = [];
+    arrays.forEach(array => {
+        array.forEach(item => {
+            newArr.push(item);
+        });
+    });
+    return newArr;
+};
+
+// with reduce
+// const flattenArr2 = arrays => {
+//     return arrays.reduce((a, b) => {
+//         //  console.log(a, b);
+//         // adds to the existing array
+//         return a.concat(b);
+//     });
+// };
+
+// apply method
+const flattenArr3 = arrays => {
+    // apply takes a single array and passes all the array elements
+    return [].concat.apply([], arrays);
+};
+// spread op
+const flattenArr4 = arrays => {
+    // concat method is used to merge two or more arrays
+    return [].concat(...arrays);
+};
+
+// anagram
+// return true if anagram
+// 'elbow' === 'below'
+const isAnagram = (str, str2) => {
+    return formatStr(str) === formatStr(str2);
+};
+
+//helper function
+const formatStr = str => {
+    let regex = /[A-Z]/g;
+    str.match(regex);
+    return str
+        .replace(/[^\w]/g, "")
+        .toLowerCase()
+        .split("")
+        .sort()
+        .join("");
+};
+
+// letter changes
+const letterChanges = str => {
+    let newStr = str.replace(/[a-z]/gi, char => {
+        if (char === "z" || char === "Z") {
+            return "a";
+        } else {
+            return String.fromCharCode(char.charCodeAt() + 1);
+        }
+    });
+    newStr = newStr.replace(/a|e|i|o|u/gi, vowel => {
+        return vowel.toUpperCase;
+    });
+    return newStr;
+};
+console.log(letterChanges("mia"));
